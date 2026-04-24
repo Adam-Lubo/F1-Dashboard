@@ -126,7 +126,7 @@ def parse_timing_snapshot(
     # the entire record with the latest row.
     latest: dict[str, dict] = {}
     for row in rows:
-        num = str(row.get("RacingNumber", row.get("DriverNo", ""))).strip()
+        num = str(row.get("RacingNumber") or row.get("DriverNo") or "").strip()
         if not num:
             continue
         if num not in latest:
@@ -154,7 +154,12 @@ def parse_timing_snapshot(
         # string (e.g. "LAP 22") rather than an empty string, so we use
         # position to determine leadership rather than trusting the gap value.
         gap_raw = str(row.get("GapToLeader", "") or "").strip()
-        gap = "Leader" if position == 1 or not gap_raw or gap_raw == "0" else gap_raw
+        if position == 1:
+            gap = "Leader"
+        elif gap_raw and gap_raw != "0":
+            gap = gap_raw
+        else:
+            gap = None
 
         # Interval to car ahead (flat string, not dict)
         interval_raw = str(row.get("IntervalToPositionAhead_Value", "") or "").strip()
