@@ -61,6 +61,7 @@ from .routers import (
     race_control as race_control_router,
     grid as grid_router,
     circuits as circuits_router,
+    replay as replay_router,
 )
 
 app.include_router(state_router.router)
@@ -75,6 +76,7 @@ app.include_router(predictions_router.router)
 app.include_router(race_control_router.router)
 app.include_router(grid_router.router)
 app.include_router(circuits_router.router)
+app.include_router(replay_router.router)
 
 
 @app.get("/health")
