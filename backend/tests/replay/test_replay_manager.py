@@ -8,7 +8,7 @@ FIXTURES = Path(__file__).parent.parent / "fixtures" / "spa_2024"
 
 @pytest.fixture
 def manager():
-    if not (FIXTURES / "timing_data.json").exists():
+    if not (FIXTURES / "timingdata.json").exists():
         pytest.skip("Run download_spa_2024.py first")
     return ReplayManager(fixtures_dir=FIXTURES)
 

@@ -15,11 +15,11 @@ def _safe_load(path: Path) -> list[dict]:
 class ReplayManager:
     def __init__(self, fixtures_dir: Path):
         self._fixtures_dir = fixtures_dir
-        self._timing_rows = _safe_load(fixtures_dir / "timing_data.json")
-        self._tire_rows = _safe_load(fixtures_dir / "timing_app_data.json")
+        self._timing_rows = _safe_load(fixtures_dir / "timingdata.json")
+        self._tire_rows = _safe_load(fixtures_dir / "timingappdata.json")
         self._position_rows = _safe_load(fixtures_dir / "position_z.json")
-        self._rc_rows = _safe_load(fixtures_dir / "race_control_messages.json")
-        driver_list_rows = _safe_load(fixtures_dir / "driver_list.json")
+        self._rc_rows = _safe_load(fixtures_dir / "racecontrolmessages.json")
+        driver_list_rows = _safe_load(fixtures_dir / "driverlist.json")
         self._resolver = DriverResolver.from_rows(driver_list_rows)
 
         # Determine total laps from timing data
