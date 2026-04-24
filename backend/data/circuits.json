@@ -1,0 +1,38 @@
+{
+  "miami": {
+    "name": "Miami International Autodrome",
+    "country": "United States",
+    "lat": 25.9581,
+    "lon": -80.2389,
+    "length_km": 5.412,
+    "total_laps": 57,
+    "lap_record": "1:29.708",
+    "lap_record_driver": "VER",
+    "lap_record_year": 2023,
+    "timezone": "America/New_York"
+  },
+  "spa": {
+    "name": "Circuit de Spa-Francorchamps",
+    "country": "Belgium",
+    "lat": 50.4372,
+    "lon": 5.9714,
+    "length_km": 7.004,
+    "total_laps": 44,
+    "lap_record": "1:46.286",
+    "lap_record_driver": "BOT",
+    "lap_record_year": 2018,
+    "timezone": "Europe/Brussels"
+  },
+  "monza": {
+    "name": "Autodromo Nazionale Monza",
+    "country": "Italy",
+    "lat": 45.6156,
+    "lon": 9.2811,
+    "length_km": 5.793,
+    "total_laps": 53,
+    "lap_record": "1:21.046",
+    "lap_record_driver": "RUB",
+    "lap_record_year": 2004,
+    "timezone": "Europe/Rome"
+  }
+}

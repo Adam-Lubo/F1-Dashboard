@@ -1,0 +1,22 @@
+{
+  "drivers": [
+    {"position": 1, "driver_code": "VER", "team_id": "redbull", "points": 127, "wins": 4},
+    {"position": 2, "driver_code": "NOR", "team_id": "mclaren", "points": 108, "wins": 2},
+    {"position": 3, "driver_code": "LEC", "team_id": "ferrari", "points": 95, "wins": 1},
+    {"position": 4, "driver_code": "PIA", "team_id": "mclaren", "points": 88, "wins": 1},
+    {"position": 5, "driver_code": "HAM", "team_id": "ferrari", "points": 71, "wins": 0},
+    {"position": 6, "driver_code": "RUS", "team_id": "mercedes", "points": 60, "wins": 0},
+    {"position": 7, "driver_code": "SAI", "team_id": "ferrari", "points": 52, "wins": 0},
+    {"position": 8, "driver_code": "ALO", "team_id": "aston", "points": 44, "wins": 0},
+    {"position": 9, "driver_code": "TSU", "team_id": "rb", "points": 28, "wins": 0},
+    {"position": 10, "driver_code": "STR", "team_id": "aston", "points": 22, "wins": 0}
+  ],
+  "constructors": [
+    {"position": 1, "team_id": "redbull",  "team_name": "Red Bull Racing", "points": 221, "wins": 4},
+    {"position": 2, "team_id": "mclaren",  "team_name": "McLaren",         "points": 196, "wins": 3},
+    {"position": 3, "team_id": "ferrari",  "team_name": "Ferrari",         "points": 172, "wins": 1},
+    {"position": 4, "team_id": "mercedes", "team_name": "Mercedes",        "points": 112, "wins": 0},
+    {"position": 5, "team_id": "aston",    "team_name": "Aston Martin",    "points": 66,  "wins": 0}
+  ],
+  "updated_at": "2026-04-20"
+}
