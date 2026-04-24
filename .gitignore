@@ -11,6 +11,9 @@ dist/
 backend/cache/
 backend/tests/fixtures/spa_2024/*.json
 
+# Runtime log files
+*.log
+
 # Node
 node_modules/
 frontend/dist/
