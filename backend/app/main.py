@@ -29,12 +29,9 @@ async def lifespan(app: FastAPI):
         }, ttl_seconds=3600)
         state_machine.on_timing_data()
     else:
-        try:
-            from .workers.live_poller import LivePoller
-            poller = LivePoller(cache=cache, state_machine=state_machine)
-            task = asyncio.create_task(poller.run())
-        except ImportError:
-            pass  # live poller not yet implemented
+        from .workers.live_poller import LivePoller
+        poller = LivePoller(cache=cache, state_machine=state_machine)
+        task = asyncio.create_task(poller.run())
     yield
     if task is not None:
         task.cancel()
