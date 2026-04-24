@@ -1,2 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+.mypy_cache/
+
+# Cache files (large; not committed)
+backend/cache/
+backend/tests/fixtures/spa_2024/*.json
+
+# Node
+node_modules/
+frontend/dist/
+shared-types/dist/
+
+# Env
+.env
+.env.local
+
+# Fly
+.fly/
+
+# OS
+.DS_Store
+
 # Worktrees
 .worktrees/
