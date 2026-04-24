@@ -62,17 +62,19 @@ def load_season(cache: CacheBackend, season: int | None = None) -> list[dict]:
         raw = getattr(season_obj, "meetings", None)
         if raw is None and hasattr(season_obj, "get_meetings"):
             raw = season_obj.get_meetings()
-        meetings: list[dict] = []
         if raw is None:
             return []
         if hasattr(raw, "to_dict"):
-            meetings = raw.to_dict(orient="records")
+            meetings: list[dict] = raw.to_dict(orient="records")
         else:
             meetings = list(raw)
+        # livef1 may return Meeting objects instead of dicts; drop them if so
+        if meetings and not isinstance(meetings[0], dict):
+            meetings = []
+        cache.set(cache_key, meetings, ttl_seconds=_SEASON_CACHE_TTL)
+        return meetings
     except Exception:
-        meetings = []
-    cache.set(cache_key, meetings, ttl_seconds=_SEASON_CACHE_TTL)
-    return meetings
+        return []
 
 
 def current_weekend(cache: CacheBackend) -> tuple[WeekendSchedule, float | None] | None:
