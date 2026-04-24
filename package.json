@@ -1,0 +1,10 @@
+{
+  "name": "f1-dashboard",
+  "private": true,
+  "workspaces": ["frontend", "shared-types"],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "test:backend": "cd backend && pytest -v",
+    "replay": "cd backend && REPLAY_SESSION=spa_2024 uvicorn app.main:app --reload --port 8000"
+  }
+}
