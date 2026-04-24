@@ -62,7 +62,15 @@ class ReplayManager:
     def _rows_at_lap(self, rows: list[dict], lap: int) -> list[dict]:
         result = []
         for row in rows:
-            row_lap = row.get("NumberOfLaps", row.get("number_of_laps", 0))
+            row_lap = (
+                row.get("NumberOfLaps") or
+                row.get("number_of_laps") or
+                row.get("Lap") or
+                row.get("lap")
+            )
+            if row_lap is None:
+                result.append(row)  # always include rows with no lap marker (init rows)
+                continue
             try:
                 if int(float(row_lap)) <= lap:
                     result.append(row)
