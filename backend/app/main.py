@@ -51,6 +51,35 @@ app.add_middleware(
 )
 
 
+from .routers import (
+    state as state_router,
+    timing as timing_router,
+    positions as positions_router,
+    standings as standings_router,
+    historical as historical_router,
+    weather as weather_router,
+    news as news_router,
+    schedule as schedule_router,
+    predictions as predictions_router,
+    race_control as race_control_router,
+    grid as grid_router,
+    circuits as circuits_router,
+)
+
+app.include_router(state_router.router)
+app.include_router(timing_router.router)
+app.include_router(positions_router.router)
+app.include_router(standings_router.router)
+app.include_router(historical_router.router)
+app.include_router(weather_router.router)
+app.include_router(news_router.router)
+app.include_router(schedule_router.router)
+app.include_router(predictions_router.router)
+app.include_router(race_control_router.router)
+app.include_router(grid_router.router)
+app.include_router(circuits_router.router)
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
