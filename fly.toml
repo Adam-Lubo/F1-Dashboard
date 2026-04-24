@@ -1,0 +1,22 @@
+app = "f1-dashboard-backend"
+primary_region = "iad"
+
+[build]
+  dockerfile = "backend/Dockerfile"
+
+[env]
+  PORT = "8000"
+  CACHE_DIR = "/data/cache"
+  PREDICTIONS_PATH = "/data/predictions/latest.json"
+  CORS_ORIGINS = "https://f1-dashboard.vercel.app"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[mounts]]
+  source = "f1_data"
+  destination = "/data"
