@@ -86,3 +86,21 @@ def test_ended_on_chequered_flag():
     sm.on_timing_data()
     sm.on_race_control_message("CHEQUERED FLAG")
     assert sm.state == SessionState.ENDED
+
+
+def test_safety_car_in_clears_sc_flag():
+    sm = StateMachine()
+    sm.on_timing_data()
+    sm.on_race_control_message("SAFETY CAR DEPLOYED")
+    assert sm.state == SessionState.SC
+    sm.on_race_control_message("SAFETY CAR IN THIS LAP")
+    sm.on_timing_data()
+    assert sm.state == SessionState.LIVE
+
+
+def test_tick_with_zero_now():
+    """Verify tick(now=0) does not fall back to wall clock."""
+    sm = StateMachine()
+    sm.set_next_session_at(10)  # 10 seconds after epoch
+    result = sm.tick(now=5)     # 5 seconds after epoch: 10-5=5 < 900s window → ARMED
+    assert result == SessionState.ARMED

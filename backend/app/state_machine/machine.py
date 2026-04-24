@@ -20,7 +20,7 @@ class StateMachine:
         self._next_session_at = ts
 
     def tick(self, now: float | None = None) -> SessionState:
-        now = now or time.time()
+        now = now if now is not None else time.time()
 
         # Flag states take priority
         if self._active_flag == "RED FLAG":
@@ -52,7 +52,7 @@ class StateMachine:
         return self._state
 
     def on_timing_data(self, at: float | None = None) -> None:
-        self._last_data_at = at or time.time()
+        self._last_data_at = at if at is not None else time.time()
         if self._state not in (SessionState.ENDED,) and self._active_flag is None:
             self._state = SessionState.LIVE
 
@@ -67,13 +67,13 @@ class StateMachine:
         elif "VIRTUAL SAFETY CAR" in msg:
             self._active_flag = "VIRTUAL SAFETY CAR"
             self._state = SessionState.VSC
+        elif "TRACK CLEAR" in msg or "GREEN LIGHT" in msg or "SAFETY CAR IN" in msg:
+            self._active_flag = None
+            if self._state not in (SessionState.IDLE, SessionState.ENDED):
+                self._state = SessionState.LIVE if self._last_data_at else SessionState.ARMED
         elif "SAFETY CAR" in msg:
             self._active_flag = "SAFETY CAR"
             self._state = SessionState.SC
         elif "YELLOW FLAG" in msg:
             self._active_flag = "YELLOW FLAG"
             self._state = SessionState.YELLOW_FLAG
-        elif "TRACK CLEAR" in msg or "GREEN LIGHT" in msg or "SAFETY CAR IN" in msg:
-            self._active_flag = None
-            if self._state not in (SessionState.IDLE, SessionState.ENDED):
-                self._state = SessionState.LIVE if self._last_data_at else SessionState.ARMED
